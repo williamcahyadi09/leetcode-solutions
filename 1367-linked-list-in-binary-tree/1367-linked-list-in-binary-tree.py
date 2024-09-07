@@ -15,9 +15,12 @@ class Solution:
             return False
 
         curr_res = self._is_sub_path(head, root)
+        if curr_res:
+            return True
+
         left_res = self.isSubPath(head, root.left)
         right_res = self.isSubPath(head, root.right)
-        return curr_res or left_res or right_res
+        return left_res or right_res
 
     def _is_sub_path(self,  head: Optional[ListNode], root: Optional[TreeNode]) -> bool:
         if not head:
