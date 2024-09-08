@@ -29,8 +29,6 @@ class Solution:
             if i < remainder:
                 n = part_n + 1
 
-            print("n : ", n)
-
             ans_head = None
             for j in range(n):
                 if j == 0:
@@ -42,9 +40,4 @@ class Solution:
                 head = head.next
 
         return ans
-                
-
-
-
-        return None
         
