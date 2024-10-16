@@ -10,38 +10,28 @@ class Solution:
             heappush(max_heap, (c * -1, "c"))
 
         string = ''
+        len_string = 0
         while(max_heap):
             count, alphabet = heappop(max_heap)
-            if len(max_heap) == 0 and alphabet == string[-1]:
-                break
 
-            if count <= -2:
-                string += (alphabet + alphabet)
-                count += 2
-            else:
-                string += alphabet
-                count += 1
+            if len_string >= 2 and string[-1] == alphabet and string[-2] == alphabet:
+                if not max_heap:
+                    break
 
-            count2 = None
-            alphabet2 = None
+                second_count, second_alphabet = heappop(max_heap)
+                heappush(max_heap, (count, alphabet))
+                count = second_count
+                alphabet = second_alphabet
 
-            if max_heap:
-                count2, alphabet2 = heappop(max_heap)
-                # print("count2 : ", count2)
-                # print("alphabet2 : ", alphabet2)
-                if count2 <= -2:
-                    string += (alphabet2 + alphabet2)
-                    count2 += 2
-                else:
-                    print("masuk sini")
-                    string += alphabet2
-                    count2 += 1
-            
+            # print("count : ", count)
+            # print("alphabet : ", alphabet)
+            # print()
+
+            string += alphabet
+            count += 1
+            len_string += 1
             
             if count < 0:
                 heappush(max_heap, (count, alphabet))
-
-            if count2 and alphabet2 and count2 < 0:
-                heappush(max_heap, (count2, alphabet2))
 
         return string
