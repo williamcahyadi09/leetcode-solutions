@@ -19,8 +19,8 @@ class ProductOfNumbers:
 
 
     def getProduct(self, k: int) -> int:
-        print("self.prefix_product : ", self.prefix_product)
-        print("self.idx : ", self.idx)
+        # print("self.prefix_product : ", self.prefix_product)
+        # print("self.idx : ", self.idx)
         if k > self.idx:
             return 0
         if k == self.idx:
