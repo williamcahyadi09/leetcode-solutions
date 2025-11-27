@@ -12,7 +12,9 @@ class Solution:
                 stack.append(c)
                 continue
 
-            if not stack or stack.pop() != mapper.get(c):
+            if stack and mapper.get(c) == stack[-1]:
+                stack.pop()
+            else:
                 return False
 
         if stack:
