@@ -2,19 +2,23 @@ class Solution:
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
         answer = []
         len_candidates = len(candidates)
-        def dfs(curr_candidates: List[int], curr_combination: list, target: int):
-            print("curr_combination : ", curr_combination)
-            print("target : ", target)
-            print()
+        def dfs(idx, curr, target):
+            # print("curr : ", curr)
             if target == 0:
-                answer.append(curr_combination.copy())
+                answer.append(curr.copy())
+                # print("answer : ", answer)
                 return
 
             if target < 0:
                 return
 
-            for i, candidate in enumerate(curr_candidates):
-                dfs(curr_candidates[i:], curr_combination+[candidate], target - candidate)
+            if idx > len_candidates - 1:
+                return
 
-        dfs(candidates, [], target)
+            curr.append(candidates[idx])
+            dfs(idx, curr, target - candidates[idx])
+            curr.pop()
+            dfs(idx+1, curr, target)
+
+        dfs(0, [], target)
         return answer
